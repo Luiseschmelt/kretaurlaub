@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreta Webmap</title>
     
-    <!-- Offizielles Leaflet CSS über unpkg CDN -->
+    <!-- Leaflet CSS über unpkg CDN -->
     <link rel="stylesheet" href="https://unpkg.com" />
     
     <style>
@@ -23,17 +23,17 @@
     <!-- Das Kartenelement -->
     <div id="map"></div>
 
-    <!-- Offizielles Leaflet JavaScript über unpkg CDN -->
+    <!-- Leaflet JavaScript über unpkg CDN -->
     <script src="https://unpkg.com"></script>
 
     <script>
         // Karte initialisieren und auf Kreta zentrieren
-        const map = L.map('map').setView([35.2401, 24.8093], 9);
+        var map = L.map('map').setView([35.2401, 24.8093], 9);
         
-        // Offizieller und stabiler OpenStreetMap-Server für die Bildkacheln
-        L.tileLayer('https://openstreetmap.org{z}/{x}/{y}.png', {
+        // GANZ WICHTIG: Absolut fehlerfreie HTTPS-Adresse für OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
         }).addTo(map);
 
         // Marker setzen (wird automatisch geöffnet)
