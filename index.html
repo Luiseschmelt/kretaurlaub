@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreta Webmap</title>
     
-    <!-- Leaflet CSS über unpkg CDN -->
-    <link rel="stylesheet" href="https://unpkg.com" />
+    <!-- Leaflet CSS über cdnjs (Extrem stabil) -->
+    <link rel="stylesheet" href="https://cloudflare.com" />
     
     <style>
         html, body, #map {
@@ -23,21 +23,28 @@
     <!-- Das Kartenelement -->
     <div id="map"></div>
 
-    <!-- Leaflet JavaScript über unpkg CDN -->
-    <script src="https://unpkg.com"></script>
+    <!-- Leaflet JavaScript über cdnjs (Zuerst laden!) -->
+    <script src="https://cloudflare.com"></script>
 
     <script>
-        // Karte initialisieren und auf Kreta zentrieren
-        var map = L.map('map').setView([35.2401, 24.8093], 9);
-        
-        // GANZ WICHTIG: Absolut fehlerfreie HTTPS-Adresse für OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
-        }).addTo(map);
+        // Sicherstellen, dass das Skript geladen ist, bevor die Karte gebaut wird
+        window.addEventListener('DOMContentLoaded', function() {
+            if (typeof L !== 'undefined') {
+                // Karte initialisieren und auf Kreta zentrieren
+                var map = L.map('map').setView([35.2401, 24.8093], 9);
+                
+                // OpenStreetMap Kartenkacheln hinzufügen
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+                }).addTo(map);
 
-        // Marker setzen (wird automatisch geöffnet)
-        L.marker([35.2979, 25.1633]).addTo(map).bindPopup("<b>Hallo Kreta!</b><br>Es klappt.").openPopup();
+                // Marker setzen (wird automatisch geöffnet)
+                L.marker([35.2979, 25.1633]).addTo(map).bindPopup("<b>Hallo Kreta!</b><br>Es klappt.").openPopup();
+            } else {
+                console.error("Leaflet konnte nicht geladen werden.");
+            }
+        });
     </script>
 </body>
 </html>
