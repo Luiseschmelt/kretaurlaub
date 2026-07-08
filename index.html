@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreta Webmap</title>
     
-    <!-- Leaflet CSS über cdnjs -->
-    <link rel="stylesheet" href="https://cloudflare.com" />
+    <!-- KORREKTUR: Vollständiger Leaflet CSS Link über unpkg CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
         html, body, #map {
@@ -23,17 +23,17 @@
     <!-- Das Kartenelement -->
     <div id="map"></div>
 
-    <!-- Leaflet JavaScript über cdnjs -->
-    <script src="https://cloudflare.com"></script>
+    <!-- KORREKTUR: Vollständiger Leaflet JavaScript Link über unpkg CDN -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
         // Karte initialisieren und auf Kreta zentrieren
         const map = L.map('map').setView([35.2401, 24.8093], 9);
         
-        // NEU: Extrem stabiler Esri-Server, der lokale Datei-Aufrufe erlaubt 
-        L.tileLayer('https://arcgisonline.com{z}/{y}/{x}', {
+        // KORREKTUR: Korrekte und funktionierende Esri-Karten-URL
+        L.tileLayer('https://arcgisonline.com{z}/{y}/{x}.png', {
             maxZoom: 19,
-            attribution: 'Tiles © Esri'
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
         }).addTo(map);
 
         // Marker setzen (wird automatisch geöffnet)
