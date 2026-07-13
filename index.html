@@ -3,48 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kreta Webmap</title>
-    
-    <!-- Leaflet CSS über cdnjs (Extrem stabil) -->
-    <link rel="stylesheet" href="https://cloudflare.com" />
-    
+    <title>Meine zentrierte Karte</title>
     <style>
-        html, body, #map {
-            width: 100%;
-            height: 100vh;
+        /* Macht die Seite vollflächig und zentriert den Inhalt */
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #cccccc;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Das zentrierte Kartenfenster */
+        .karten-fenster {
+            width: 80%;
+            height: 70vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            overflow: hidden;
+            background-color: #ccc;
+        }
+        /* Die Karte selbst füllt das Fenster komplett aus */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Das Kartenelement -->
-    <div id="map"></div>
+    <!-- Ein zentriertes Fenster mit einer eingebetteten OpenStreetMap-Karte -->
+    <div class="karten-fenster">
+        <iframe src="https://openstreetmap.org"></iframe>
+    </div>
 
-    <!-- Leaflet JavaScript über cdnjs (Zuerst laden!) -->
-    <script src="https://cloudflare.com"></script>
-
-    <script>
-        // Sicherstellen, dass das Skript geladen ist, bevor die Karte gebaut wird
-        window.addEventListener('DOMContentLoaded', function() {
-            if (typeof L !== 'undefined') {
-                // Karte initialisieren und auf Kreta zentrieren
-                var map = L.map('map').setView([35.2401, 24.8093], 9);
-                
-                // OpenStreetMap Kartenkacheln hinzufügen
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
-                }).addTo(map);
-
-                // Marker setzen (wird automatisch geöffnet)
-                L.marker([35.2979, 25.1633]).addTo(map).bindPopup("<b>Hallo Kreta!</b><br>Es klappt.").openPopup();
-            } else {
-                console.error("Leaflet konnte nicht geladen werden.");
-            }
-        });
-    </script>
 </body>
 </html>
