@@ -24,7 +24,7 @@
             overflow: hidden;
             background-color: #ccc;
         }
-        /* Die Karte selbst füllt das Fenster komplett aus */
+        /* Die Google-Karte füllt das Fenster komplett aus */
         iframe {
             width: 100%;
             height: 100%;
@@ -34,9 +34,13 @@
 </head>
 <body>
 
-    <!-- Ein zentriertes Fenster mit einer eingebetteten OpenStreetMap-Karte -->
+    <!-- Ein zentriertes Fenster mit einer eingebetteten Google-Karte (Zentriert auf Deutschland) -->
     <div class="karten-fenster">
-        <iframe src="https://openstreetmap.org"></iframe>
+        <iframe 
+            src="https://google.com" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
     </div>
 
 </body>
